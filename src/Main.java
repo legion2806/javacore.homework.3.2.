@@ -26,10 +26,37 @@ public class Main {
             );
         }
 
-        Collection<Person> stream = persons
+        long countNotAdultPerson = persons
                 .stream()
-                .filter(x -> x > 18)
+                .filter(person -> person.getAge() < 18)
                 .count();
+
+        List countAdultPerson = persons
+                .stream()
+                .filter(person -> person.getAge() > 18)
+                .filter(person -> person.getAge() < 27)
+                .map(person -> person.getName())
+                .collect(Collectors.toList());
+
+        Collection countAdultEducationWomen = persons
+                .stream()
+                .filter(person -> person.getSex() == Sex.WOMEN)
+                .filter(person -> person.getAge() > 18)
+                .filter(person -> person.getAge() < 60)
+                .filter(person -> person.getEducation() == Education.HIGHER)
+                .sorted(Comparator.comparing(Person::getFamily))
+                .collect(Collectors.toList());
+
+        Collection countAdultEducationMan = persons
+                .stream()
+                .filter(person -> person.getSex() == Sex.MAN)
+                .filter(person -> person.getAge() > 18)
+                .filter(person -> person.getAge() < 65)
+                .filter(person -> person.getEducation() == Education.HIGHER)
+                .sorted(Comparator.comparing(Person::getFamily))
+                .collect(Collectors.toList());
+
+        System.out.println(countAdultEducationMan);
 
 
     }
