@@ -56,8 +56,6 @@ public class Main {
                 .sorted(Comparator.comparing(Person::getFamily))
                 .collect(Collectors.toList());
 
-        System.out.println(countAdultEducationMan);
-
 
     }
 
